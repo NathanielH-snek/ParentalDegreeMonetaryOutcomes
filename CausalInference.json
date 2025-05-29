@@ -1,0 +1,283 @@
+[
+	{
+		"id": "http://zotero.org/users/16464477/items/JIGKS4Y9",
+		"type": "article-journal",
+		"abstract": "Very few studies on intergenerational achievement consider the high correlation between separate measures of parental socioeconomic position and possible life course variation in their signiﬁcance for children. We analyse how socioeconomic characteristics of mothers and fathers over children’s life course explain children’s occupational outcomes in adulthood. Using Finnish register data, we matched the occupational position (ISEI) of 29,282 children with information on parents’ education, occupational class and income when children are 0–4, 5–9, 10–14, 15–19, 20–24 and 25–29 years old. We ﬁtted three-level random effects linear regression models and decompose family-level variance of siblings’ ISEI by each measure of parental status. We show that parental education explains family variation in siblings’ occupation most and income explains it least. Status characteristics of fathers together explain approximately half of children’s outcomes, and those of mothers explain slightly less. These explanations vary only a little during children’s life course. We also ﬁnd that independent, non-overlapping effects of observed parental indicators vary over time. Mothers’ education explains independently most in infancy, whereas that of fathers in early adulthood. The inﬂuence of class alone is minor and time constant, but the effect of income alone is negligible over the entire follow-up. The independent effects are overall relatively small. The largest proportion of children’s outcomes explained by these parental measures is shared and cannot be decomposed into independent effects. We conclude that bias due to ignoring life course variation in studies on intergenerational attainment is likely to be small.",
+		"container-title": "Research in Social Stratification and Mobility",
+		"DOI": "10.1016/j.rssm.2016.01.003",
+		"ISSN": "02765624",
+		"journalAbbreviation": "Research in Social Stratification and Mobility",
+		"language": "en",
+		"page": "33-43",
+		"source": "DOI.org (Crossref)",
+		"title": "Parental education, class and income over early life course and children's achievement",
+		"URL": "https://linkinghub.elsevier.com/retrieve/pii/S0276562416300038",
+		"volume": "44",
+		"author": [
+			{
+				"family": "Erola",
+				"given": "Jani"
+			},
+			{
+				"family": "Jalonen",
+				"given": "Sanni"
+			},
+			{
+				"family": "Lehti",
+				"given": "Hannu"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					15
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2016",
+					6
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16464477/items/JD9ZXNIF",
+		"type": "article-journal",
+		"abstract": "This paper is based on a talk given at the conference of the Centre for Research on the Wider Benefits of Learning, September 2004. There is consistent evidence that parents' education predicts children's educational outcomes, alongside other distal family characteristics such as family\n income, parents' occupations and residence location. A variety of explanations have been offered for these associations. In this paper, we review the most prominent explanations, present a comprehensive model of the influences of parents' education and then summarize some of the research we\n have done that focuses on the role of parental influences on children's academic achievement.",
+		"container-title": "London Review of Education",
+		"DOI": "10.1080/14748460500372309",
+		"ISSN": "1474-8460, 1474-8479",
+		"issue": "3",
+		"language": "en",
+		"source": "DOI.org (Crossref)",
+		"title": "Influences of parents' education on their children's educational attainments: the role of parent and child perceptions",
+		"title-short": "Influences of parents' education on their children's educational attainments",
+		"URL": "https://journals.uclpress.co.uk/lre/article/id/2423/",
+		"volume": "3",
+		"author": [
+			{
+				"family": "Eccles",
+				"given": "Jacquelynne S."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					15
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2005"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16464477/items/YS83962Q",
+		"type": "article-journal",
+		"abstract": "Children’s educational outcomes are strongly correlated with their parents’ educational attainment. This finding is often attributed to the family environment—assuming, for instance, that parents’ behavior and resources affect their children’s educational outcomes. However, such inferences of a causal role of the family environment depend on the largely untested assumption that such relationships do not simply reflect genes shared between parent and child. We examine this assumption with an adoptee design in full-population cohorts from Danish administrative data. We test whether parental education predicts children’s educational outcomes in both biological and adopted children, looking at four components of the child’s educational development: (I) the child’s conscientiousness during compulsory schooling, (II) academic performance in those same years, (III) enrollment in academically challenging high schools, and (IV) graduation success. Parental education was a substantial predictor of each of these child outcomes in the full population. However, little intergenerational correlation in education was observed in the absence of genetic similarity between parent and child—that is, among adoptees. Further analysis showed that what links adoptive parents’ education did have with later-occurring components such as educational attainment (IV) and enrollment (III) appeared to be largely attributable to effects identifiable earlier in development, namely early academic performance (II). The primary nongenetic mechanisms by which education is transmitted across generations may thus have their effects on children early in their educational development, even as the consequences of those early effects persist throughout the child’s educational development.",
+		"container-title": "Journal of Personality and Social Psychology",
+		"DOI": "10.1037/pspp0000314",
+		"ISSN": "1939-1315, 0022-3514",
+		"issue": "4",
+		"journalAbbreviation": "Journal of Personality and Social Psychology",
+		"language": "en",
+		"page": "1074-1090",
+		"source": "DOI.org (Crossref)",
+		"title": "Does parental education influence child educational outcomes? A developmental analysis in a full-population sample and adoptee design.",
+		"title-short": "Does parental education influence child educational outcomes?",
+		"URL": "https://doi.apa.org/doi/10.1037/pspp0000314",
+		"volume": "120",
+		"author": [
+			{
+				"family": "Ludeke",
+				"given": "Steven G."
+			},
+			{
+				"family": "Gensowski",
+				"given": "Miriam"
+			},
+			{
+				"family": "Junge",
+				"given": "Sarah Y."
+			},
+			{
+				"family": "Kirkpatrick",
+				"given": "Robert M."
+			},
+			{
+				"family": "John",
+				"given": "Oliver P."
+			},
+			{
+				"family": "Andersen",
+				"given": "Simon Calmar"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					15
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2021",
+					4
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16464477/items/RG2EKSPF",
+		"type": "article-journal",
+		"abstract": "This study examined the ways in which student’s academic achievements are effected by parental education and their socio-economic status. Participants were 250 students taken from randomly selected departments and research findings are to be generalized to the University of Sargodha students. Students were selected from M.A 3rd level with the demographic information of gender, roll no and department. Data is collected from participants through questionnaire which contains three basic variables. Parental education and Socio-economic status are independent variables and student’s achievement is dependent variable. Analysis of data indicates that students belonging to strong financial status perform better than those who face problems in finance. Similarly, parental education boosts up their children’s performance.",
+		"issue": "1",
+		"language": "en",
+		"source": "Zotero",
+		"title": "IMPACT OF PARENTAL EDUCATION AND SOCIO-ECONOMIC STATUS ON ACADEMIC ACHIEVEMENTS OF UNIVERSITY STUDENTS",
+		"volume": "1",
+		"author": [
+			{
+				"family": "Azhar",
+				"given": "Musarat"
+			},
+			{
+				"family": "Nadeem",
+				"given": "Sundus"
+			},
+			{
+				"family": "Naz",
+				"given": "Faqiha"
+			},
+			{
+				"family": "Perveen",
+				"given": "Fozia"
+			},
+			{
+				"family": "Sameen",
+				"given": "Ayesha"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2014"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16464477/items/LBXNTNU7",
+		"type": "article-journal",
+		"abstract": "We investigate the relationship between early school-leaving and parental education and paternal income using UK Labour Force Survey data. OLS estimation reveals modest effects of income, stronger effects of maternal education relative to paternal, and stronger effects on sons than daughters. Using IV to simultaneously model the endogeneity of parental education and income, the maternal education effect disappears, while paternal education remains significant but only for daughters. In our favourite specification, which proxy for permanent income, paternal income becomes insignificant. Thus policies alleviating income constraints to alter schooling decisions may not be as effective as policies which increase permanent income.",
+		"container-title": "IZA Journal of Labor Economics",
+		"DOI": "10.1186/2193-8997-2-8",
+		"ISSN": "2193-8997",
+		"issue": "1",
+		"journalAbbreviation": "IZA J Labor Econ",
+		"language": "en",
+		"page": "8",
+		"source": "Springer Link",
+		"title": "The impact of parental income and education on the schooling of their children",
+		"URL": "https://doi.org/10.1186/2193-8997-2-8",
+		"volume": "2",
+		"author": [
+			{
+				"family": "Chevalier",
+				"given": "Arnaud"
+			},
+			{
+				"family": "Harmon",
+				"given": "Colm"
+			},
+			{
+				"family": "O’ Sullivan",
+				"given": "Vincent"
+			},
+			{
+				"family": "Walker",
+				"given": "Ian"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					15
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2013",
+					12,
+					9
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16464477/items/DS7TYY6R",
+		"type": "chapter",
+		"abstract": "Socio-economic differences in health and health-related behaviors can be pivotal to understand socio-economic inequalities in education and labor market outcomes. The education of parents is an important, if not the most important, characteristic to describe children’s socio-economic background. Increased parental education substantially changes the environment in which children grow up, it changes the investments into children, and these changes start to happen early in children’s life. This chapter summarizes the literature on effects of parental education on children’s health. It answers questions like: Does parental education impact children’s health? Does mothers’ or fathers’ education matter for children’s health? At what age of children does parental education matter? What are potential transmission mechanisms? Overall, intergenerational effects of education on health prove to be substantial and important. A significant part of the intergenerational transmission of socio-economic status may therefore work through the impact of parental education on children’s health.",
+		"container-title": "The Economics of Education (Second Edition)",
+		"ISBN": "978-0-12-815391-8",
+		"note": "DOI: 10.1016/B978-0-12-815391-8.00007-0",
+		"page": "91-102",
+		"publisher": "Academic Press",
+		"source": "ScienceDirect",
+		"title": "Chapter 7 - Parental education and children's health throughout life",
+		"URL": "https://www.sciencedirect.com/science/article/pii/B9780128153918000070",
+		"author": [
+			{
+				"family": "Huebener",
+				"given": "Mathias"
+			}
+		],
+		"editor": [
+			{
+				"family": "Bradley",
+				"given": "Steve"
+			},
+			{
+				"family": "Green",
+				"given": "Colin"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					15
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2020",
+					1,
+					1
+				]
+			]
+		}
+	}
+]

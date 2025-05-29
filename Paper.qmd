@@ -1,0 +1,213 @@
+---
+title: "Effects of Parental Degrees on Degree Selection Outcomes"
+format: 
+  html: 
+    embed-resources: true
+    self-contained-math: true
+bibliography: Citations.bib
+---
+
+# Introduction
+
+The association between parental educational achievement and offspring is well studied. Often a higher level of parental education and the resulting increase in income have strong positive impacts on their children's educational success, and financial outcomes, which is important for establishing generational wealth. Indeed parental education has a substantial affect not only on the furthering of education, but also on pre-post-secondary educational performance particularly among non-adopted offspring [@ludeke_does_2021]. Another study which detailed the effects of individual parental education and socio-economic status found that increasing levels of education beyond an initial college degree resulted in increasingly higher affects on Master student GPA [@azhar_impact_2014]. Additionally the study details that paternal education had a larger impact on GPA than did mother's education level. This indicates that the effect of parental education may differ by parental gender. Notably absent however is the comparison of permutations of parental education and also the gender of the student. This link is not necessarily clear cut however as there is evidence to suggest that this effect is mediated by parental attitude and gender conditioning effects on the offspring [@eccles_influences_2005]. Parental education can also present a strong influence on occupation as well with paternal education showing a slightly higher impact in this study as well [@erola_parental_2016]. Although these effects are generally accepted and confirmed by numerous studies, some research appears to indicate that with proper variable control that it is not education but rather permanent income is actually the effect that results in the significant effect on higher educational attainment [@chevalier_impact_2013].
+As a result of conflicting evidence a clear gap in the literature lies in the affect of parental education on degree selection itself. Explicitly to what extent does parental education affect students' choice of financially valuable college degree majors?
+
+# Data Description
+The data used for this project will be the National Survey of College Graduates from 2021. The more preferred dataset for this project was the College and Beyond dataset however it is behind both a paywall and an application. As such the direction and dataset for this project have both slightly changed. The survey is biennial and is administered to college graduates and is conducted by the National Science Foundation. External data may be needed to determine degree "valuation." Since there are many permutations of degrees the most recent degree will be used. 
+
+## Data Variables
+- Principal Job (A16) [Job]
+- Job Require Higher than Bachelors (A19) [DegreeHigher]
+- Job Related to highest degree (A21) [DegreeRelated]
+- Highest Degree (Derived D11) [DegreeLevel]
+- Annual Salary (A30) [Salary]
+- Most Recent Degree (D11) (institution, field(s) of study)[DegreeInst] [DegreePrimField] [DoubleMajor]
+- How Degrees were financed (D12) [DegreeFinance]
+- Amount Borrowed for degree (D13) [DegreeBorrowed]
+- Employer help pay for degree (D20) [EmployerPay]
+- Highest Level of parental education (E6): split by gender [FatherEduc] [MotherEduc]
+- Race (E22) [Race]
+- Birtdate (E23) [Age]
+- TimeSinceDegree (Derived)
+
+# DAG
+Parental education is expected to affect a students selection of degrees. Having more educated parents should allow students to make more informed educational decisions, or alternatively may allow students more freedom to chose less financially important degrees. As mediation for this the level of parental education should affect how much students borrowed for their degrees as more educated parents are expected to have more expendable income.
+
+```{r}
+rm(list=ls())
+library(dagitty)
+library(future)
+library(mediation)
+library(boot)
+library(parallel)
+```
+
+```{r}
+dag <- dagitty("dag {
+  DegreeBorrowed -> DegreePrimField
+  ParentalEduc -> DegreeBorrowed
+  ParentalEduc -> DegreePrimField
+}")
+
+plan(multisession, workers = 6)
+
+plot(dag)
+```
+
+```{r}
+parentalEd <- adjustmentSets(dag, exposure = "ParentalEduc", outcome = "DegreePrimField")
+```
+
+```{r}
+paths(dag, from = "ParentalEduc", to = "DegreePrimField")
+```
+
+# Hypothesis
+Students with more highly educated parents are more likely to choose financially valuable fields of study, such as STEM or business.
+
+# Data Processing
+
+```{r}
+library(readr)
+library(tidyverse)
+library(skimr)
+library(readxl)
+library(MatchIt)
+library(cem)
+```
+
+
+```{r}
+layout <- read.csv('data_layout.csv')
+
+col_names <- layout$SAS.NAME
+widths <- layout$LENGTH
+
+data <- read_fwf("EPCG21.DAT", fwf_widths(widths, col_names = col_names))
+```
+
+
+
+```{r}
+#Selecting only the variables needed then rename to something more understandable. 
+data_clean <- data %>% 
+  dplyr::select(RACEM, UGLOANR, AGE, BAPBPR, BADGRUS, N2BAMED, EDDAD, EDMOM) %>%
+  rename (
+    Race = RACEM,
+    UG_loan_borrow = UGLOANR,
+    Age = AGE,
+    priv_pub = BAPBPR,
+    school_us = BADGRUS,
+    degree_field = N2BAMED,
+    father_educ = EDDAD,
+    mother_educ = EDMOM
+  )
+skim(data_clean)
+```
+```{r}
+degree_field_keys <- read.csv('major_keys.csv')
+data_clean <- data_clean %>%
+  left_join(degree_field_keys, by = "degree_field") %>%
+  #select(-Description.y, -Category.y) %>%
+  rename(
+    description = Description,
+    category = Category
+  )
+
+data_clean_drop <- data_clean %>%
+  filter(degree_field != 999989)
+```
+
+```{r}
+data_clean_drop <- data_clean_drop %>%
+  mutate(high_value = case_when(
+    category == "Stem" ~ 1,
+    category == "Business" ~ 1,
+    category == "Other" ~ 0
+  ))
+```
+
+```{r}
+#Here the categories are less than high school (very low) less than college degree (low), bachelors (medium) masters (high) and finally professional or doctorate (very high).
+data_clean_drop <- data_clean_drop %>%
+  mutate(parental_educ = case_when(
+    round((father_educ + mother_educ) / 2) <= 1 ~ "Very Low",
+    round((father_educ + mother_educ) / 2)  == 2 ~ "Low",
+    round((father_educ + mother_educ) / 2)  == 3 ~ "Low",
+    round((father_educ + mother_educ) / 2)  == 4 ~ "Medium",
+    round((father_educ + mother_educ) / 2)  == 5 ~ "High",
+   round((father_educ + mother_educ) / 2)  > 5 ~ "Very High"
+  ))
+```
+
+```{r}
+data_clean_drop <- data_clean_drop %>%
+  mutate(parental_educ_numeric = case_when(
+    round((father_educ + mother_educ) / 2) <= 1 ~ 0,
+    round((father_educ + mother_educ) / 2)  == 2 ~ 0,
+    round((father_educ + mother_educ) / 2)  == 3 ~ 0,
+    round((father_educ + mother_educ) / 2)  == 4 ~ 1,
+    round((father_educ + mother_educ) / 2)  == 5 ~ 1,
+   round((father_educ + mother_educ) / 2)  > 5 ~ 1
+  ))
+```
+
+```{r}
+data_final <- data_clean_drop %>%
+  dplyr::select(-category, -parental_educ, -description, -father_educ, -mother_educ, -degree_field, -priv_pub)
+data_final$UG_loan_borrow <- as.numeric(gsub("^0+", "", data_final$UG_loan_borrow))
+#data_final$priv_pub <- ifelse(data_final$priv_pub == "L", -1, data_final$priv_pub)
+#data_final$priv_pub <- ifelse(data_final$priv_pub == "M", NA, data_final$priv_pub)
+#data_final$priv_pub <- trimws(data_final$priv_pub)
+#ata_final$priv_pub <- gsub("[^0-9.-]", "", data_final$priv_pub) 
+#data_final$degree_field <- as.factor(data_final$degree_field)
+```
+
+# Matching
+Matching is used to have more balanced groups in mediation analysis for a stronger causal claim. 
+```{r}
+matched_data <- cem(
+  treatment = "parental_educ_numeric",
+  data = data_final,
+  drop = "high_value",
+  baseline.group = "0"
+)
+```
+
+```{r}
+#Clear improvement to group balancing using matching.
+library(cobalt)
+love.plot(matched_data, threshold = 0.1, data = data_final)
+```
+```{r}
+library(GGally)
+plots <- ggpairs(data_final, progress = F)
+plots
+```
+
+```{r}
+cem_matched <- data_final
+cem_matched$weights <- matched_data$w
+```
+
+# Mediation Analysis
+The amount of loans borrowed for each respondants undergraduate degree is used as a mediator for the effect of parental education on selection of a high value degree.
+```{r}
+model.m <- lm(UG_loan_borrow ~ ., data = cem_matched, weights = weights)
+model.y <- lm(high_value ~ ., data = cem_matched, weights = weights)
+out <- mediate(model.m, model.y, sims = 1000, boot = TRUE, treat = "parental_educ_numeric", mediator = "UG_loan_borrow", parallel = "multicore", ncpus = 8)
+```
+
+```{r}
+summary(out)
+```
+
+```{r}
+plot(out)
+```
+
+## Interpretation
+The results here are extremely small. The ACME, ADE, Total Effect, and Proportion mediated are all statistically significant which is good, however the effects of all of them are so small that they are essentially not worth mentioning. Additionally there is a huge amount of variance in the ADE and Proportion Mediated. These results indicate that of the very small effect that parental education has on the selection of high value degrees, the amount of loans borrowed has little to do with it. Additionally the effect of parental education on selecting a high value degree is very small although it is significant. Statistically these results do support the hypothesis given but interpreted substantially however they do not give convincing evidence to support my hypothesis.
+
+## Conclusion
+Overall a small but significant effect is found on selecting a high value degree. This is general consistent with literature that to summarize tends to show that parental education and socioeconomic status can have direct effects on career outcomes and trajectories.The effects found in this paper are however much smaller than expected. This indicates that potentially parental education in this instance may not be as effective at predicting high value degree selection as perhaps other variables. Regardless there are small effects which are important and could potentially compound over generations. This does have some caveats though as there are some clear limitations in this paper. First the designation of high value or low value degrees could potentially be debated. In this case they have been taken to be STEM and Business but there may be further delineation to be had there. Additionally parental education is reduced to either low or high, but there is far more nuance to that. Ideally either a slightly more complex dag or better treatment variable could be selected. Further directions involve using more control variables, potentially changing the treatment variable, and testing other mediators as well. 
